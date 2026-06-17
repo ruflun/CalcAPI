@@ -26,8 +26,6 @@
 </style>
 
 <body>
-    <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
-
     <h1>CalcAPI test</h1>
 
     <div>
@@ -50,31 +48,11 @@
         <label for="number-b">Number B</label><br>
 
         <h2 id="text-output"></h2>
+        <h4 id="url-output"></h4>
     </div>
 </body>
 
-<script>
-    function call_api(calltype) {
-        $.get({
-            url: `http://localhost:3000/api/${calltype}?a=${ $("#number-a").val() }&b=${ $("#number-b").val() }`,
-            success: (data) => {
-                $("#text-output").html(data);
-            },
-            error: () => {
-                $("#text-output").html("API call failed");
-            }
-        });
-        console.log(`http://localhost:3000/api/${calltype}?a=${ $("#number-a").val() }&b=${ $("#number-b").val() }`);
-    }
-
-    $("#num-add").on("click", () => { call_api("add") });
-    $("#num-sub").on("click", () => { call_api("sub") });
-    $("#num-mul").on("click", () => { call_api("mul") });
-    $("#num-div").on("click", () => { call_api("div") });
-    $("#num-pow").on("click", () => { call_api("pow") });
-    $("#num-sqrt").on("click", () => { call_api("sqrt") });
-    $("#num-min").on("click", () => { call_api("min") });
-    $("#num-max").on("click", () => { call_api("max") });
-</script>
+<script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
+<script src="./dist/test.js"></script>
 
 </html>
