@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CalcAPI test</title>
+</head>
+
+<style>
+    body { padding: 80px; }
+    h1 { text-align: center; }
+    input[type="button"] { padding: 10px; }
+
+    div {
+        border: 2px solid darkgray;
+        text-align: center;
+        padding: 20px;
+        margin: 20px;
+    }
+
+    .btn-group {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+</style>
+
+<body>
+    <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
+
+    <h1>CalcAPI test</h1>
+
+    <div>
+        
+        <div class="btn-group">
+            <input type="button" value="A+B" id="num-add"><br>
+            <input type="button" value="A-B" id="num-sub"><br>
+            <input type="button" value="A*B" id="num-mul"><br>
+            <input type="button" value="A/B" id="num-div"><br>
+            <input type="button" value="A^B" id="num-pow"><br>
+            <input type="button" value="√A" id="num-sqrt"><br>
+            <input type="button" value="min(A,B)" id="num-min"><br>
+            <input type="button" value="max(A,B)" id="num-max"><br>
+        </div>
+
+        <input type="number" name="number-a" id="number-a" value="1">
+        <label for="number-a">Number A</label><br>
+
+        <input type="number" name="number-b" id="number-b" value="1">
+        <label for="number-b">Number B</label><br>
+
+        <h2 id="text-output"></h2>
+    </div>
+</body>
+
+<script>
+    function call_api(calltype) {
+        $.get({
+            url: `http://localhost:3000/api/${calltype}?a=${ $("#number-a").val() }&b=${ $("#number-b").val() }`,
+            success: (data) => {
+                $("#text-output").html(data);
+            },
+            error: () => {
+                $("#text-output").html("API call failed");
+            }
+        });
+        console.log(`http://localhost:3000/api/${calltype}?a=${ $("#number-a").val() }&b=${ $("#number-b").val() }`);
+    }
+
+    $("#num-add").on("click", () => { call_api("add") });
+    $("#num-sub").on("click", () => { call_api("sub") });
+    $("#num-mul").on("click", () => { call_api("mul") });
+    $("#num-div").on("click", () => { call_api("div") });
+    $("#num-pow").on("click", () => { call_api("pow") });
+    $("#num-sqrt").on("click", () => { call_api("sqrt") });
+    $("#num-min").on("click", () => { call_api("min") });
+    $("#num-max").on("click", () => { call_api("max") });
+</script>
+
+</html>
