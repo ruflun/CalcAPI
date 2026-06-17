@@ -14,6 +14,10 @@ To run the server, do either of the following (on the project root):
 - Directly run the server on the TS file via the `ts-node` package/command.
 - Run `tsc` to compile the typescript, then run `node ./dist/index.js`.
 
+Then, you can use the provided `test.html` to test out the API. [^1]
+
+[^1]: You must first compile the typescript code using `tsc` beforehand.
+
 ## Endpoints/Commands
 
 `/api/add` - Adds A by B.
